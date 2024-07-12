@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": " node --watch run app.js"
+    "start": " node --watch app.js"
   },
   "keywords": [],
   "author": "",

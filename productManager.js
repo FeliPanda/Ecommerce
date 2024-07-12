@@ -1,77 +1,90 @@
 const fs = require('fs');
-const filepath =
 
-    class productManager {
+class ProductManager {
+    constructor(filepath) {
+        this.path = filepath;
+        this.initializeFile();
+    }
 
-        constructor(filepath) {
-            this.path = filepath
-            this.initializaFile();
-            this.nextId = this.getNextId();
-        }
-
-        //initializating the file
-        initializaFile() {
-            if (!fs.existsSync(this.path)) {
-                fs.writeFileSync(this.path, json.stringify([]));
-            }
-        }
-
-        getNextId() {
-            const products = this.getProductsFromFile();
-            return products.length === 0 ? 1 : Math.max(...products.map(p => p.id)) + 1;
-        }
-
-
-        //method to add productos
-
-        addProduct(title, description, price, thumbnail, code, stock) {
-            const products = this.getProductsFromFile();
-            const newProduct = {
-                id: this.getNextId(),
-                title,
-                description,
-                price,
-                thumbnail,
-                code,
-                stock
-            };
-
-            products.push(newProduct);
-            this.saveProductsToFile(products);
-            return newProduct;
-        };
-
-
-        getProductsFromFile() {
-            const jsonString = fs.readFileSync(this.path, 'utf-8');
-            return JSON.parse(jsonString);
-        }
-        getProductsById(id) {
-            const products = this.getProductsFromFile();
-            return products.find(product => product.id === id);
-        }
-
-        //update products
-        updateProduct(id, updatedFields) {
-            const products = this.getProductsFromFile();
-            const index = products.findIndex(product => product.id === id);
-            if (index !== -1) {
-                Object.assign(products[index], updatedFields);
-                this.saveProductsToFile(products);
-            }
-
-        }
-
-        deleteProduct(id) {
-            const products = this.getProductsFromFile();
-            const index = products.findIndex(product => product.id === id);
-            if (index !== -1) {
-                products.splice(index, 1);
-                this.saveProductsToFile(products);
-            }
-        }
-
-        saveProductsToFile(products) {
-            fs.writeFileSync(this.path, JSON.stringify(products));
+    // Inicializar el archivo
+    initializeFile() {
+        if (!fs.existsSync(this.path)) {
+            fs.writeFileSync(this.path, JSON.stringify([]));
         }
     }
+
+    // Obtener el siguiente ID autoincrementable
+    getNextId() {
+        const products = this.getProductsFromFile();
+        return products.length === 0 ? 1 : Math.max(...products.map(p => p.id)) + 1;
+    }
+
+    // Método para agregar productos
+    addProduct({ title, description, price, thumbnails = [], code, stock, category }) {
+        const products = this.getProductsFromFile();
+        const newProduct = {
+            id: this.getNextId(),
+            title,
+            description,
+            price,
+            thumbnails,
+            code,
+            stock,
+            category,
+            status: true
+        };
+
+        products.push(newProduct);
+        this.saveProductsToFile(products);
+        return newProduct;
+    }
+
+    // Obtener todos los productos
+    getProducts() {
+        return this.getProductsFromFile();
+    }
+
+    // Obtener productos desde el archivo
+    getProductsFromFile() {
+        const jsonString = fs.readFileSync(this.path, 'utf-8');
+        return JSON.parse(jsonString);
+    }
+
+    // Obtener producto por ID
+    getProductById(id) {
+        const products = this.getProductsFromFile();
+        return products.find(product => product.id === id);
+    }
+
+    // Actualizar producto
+    updateProduct(id, updatedFields) {
+        const products = this.getProductsFromFile();
+        const index = products.findIndex(product => product.id === id);
+        if (index !== -1) {
+            Object.assign(products[index], updatedFields);
+            this.saveProductsToFile(products);
+            return products[index];
+        }
+        return null;
+    }
+
+    // Eliminar producto
+    deleteProduct(id) {
+        const products = this.getProductsFromFile();
+        const index = products.findIndex(product => product.id === id);
+        if (index !== -1) {
+            const deletedProduct = products.splice(index, 1)[0];
+            this.saveProductsToFile(products);
+            return deletedProduct;
+        }
+        return null;
+    }
+
+    // Guardar productos en el archivo
+    saveProductsToFile(products) {
+        fs.writeFileSync(this.path, JSON.stringify(products, null, 2));
+    }
+}
+
+// Exporta la clase ProductManager para que pueda ser utilizada en otros archivos
+module.exports = ProductManager;

@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "Smartphone Galaxy S22",
+    "description": "Nuevo modelo de smartphone con cámara de alta resolución.",
+    "price": 899.99,
+    "thumbnails": [
+      "url1",
+      "url2"
+    ],
+    "code": "PHN123",
+    "stock": 50,
+    "category": "Electronics",
+    "status": true
+  },
+  {
+    "id": 2,
+    "title": "Laptop Lenovo ThinkPad",
+    "description": "Potente laptop para negocios y productividad.",
+    "price": 1299.99,
+    "thumbnails": [
+      "url3",
+      "url4"
+    ],
+    "code": "LAP456",
+    "stock": 20,
+    "category": "Electronics",
+    "status": true
+  },
+  {
+    "id": 3,
+    "title": "Botines Nike Mercurial",
+    "description": "Botines de fútbol de alta gama.",
+    "price": 199.99,
+    "thumbnails": [
+      "url5",
+      "url6"
+    ],
+    "code": "BOT789",
+    "stock": 30,
+    "category": "Sports",
+    "status": true
+  },
+  {
+    "id": 5,
+    "title": "Samsung Galaxy S21 Ultra",
+    "description": "Flagship smartphone with 6.8-inch AMOLED display and quad-camera setup.",
+    "price": 1199.99,
+    "thumbnails": [
+      "https://example.com/images/samsung-s21-ultra-thumb1.jpg",
+      "https://example.com/images/samsung-s21-ultra-thumb2.jpg"
+    ],
+    "code": "PH-SAMSUNG-S21-ULTRA",
+    "stock": 30,
+    "category": "Smartphones",
+    "status": true
+  },
+  {
+    "id": 6,
+    "title": "Sony WH-1000XM4 Wireless Headphones",
+    "description": "Noise-cancelling headphones with industry-leading active noise cancellation.",
+    "price": 349.99,
+    "thumbnails": [
+      "https://example.com/images/sony-wh1000xm4-thumb1.jpg",
+      "https://example.com/images/sony-wh1000xm4-thumb2.jpg"
+    ],
+    "code": "AU-SONY-WH1000XM4",
+    "stock": 20,
+    "category": "Audio",
+    "status": true
+  }
+]
