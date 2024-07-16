@@ -6,6 +6,39 @@ const ProductManager = require('../productManager');
 const cartManager = new CartManager('./carts.json');
 const productManager = new ProductManager('./products.json');
 
+// Ruta para crear un nuevo carrito
+router.post('/', (req, res) => {
+    try {
+        const newCart = cartManager.createCart();
+        res.status(201).json(newCart);
+    } catch (error) {
+        console.error('Error al crear el carrito:', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
+});
+
+// Ruta para listar los productos de un carrito específico
+router.get('/:cid', (req, res) => {
+    try {
+        const cartId = req.params.cid;
+        const products = cartManager.getProductsByCartId(cartId);
+
+        if (!products) {
+            return res.status(404).json({ message: 'Carrito no encontrado' });
+        }
+
+        const detailedProducts = products.map(item => {
+            const product = productManager.getProductById(item.product);
+            return { ...product, quantity: item.quantity };
+        });
+
+        res.json(detailedProducts);
+    } catch (error) {
+        console.error('Error al obtener los productos del carrito:', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
+});
+
 // Ruta para agregar un producto a un carrito
 router.post('/:cid/products/:pid', (req, res) => {
     try {
