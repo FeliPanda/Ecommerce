@@ -3,13 +3,13 @@
     "id": 1,
     "title": "Smartphone Galaxy S22",
     "description": "Nuevo modelo de smartphone con cámara de alta resolución.",
-    "price": 899.99,
+    "price": 0,
     "thumbnails": [
       "url1",
       "url2"
     ],
     "code": "PHN123",
-    "stock": 50,
+    "stock": 5,
     "category": "Electronics",
     "status": true
   },
@@ -67,6 +67,20 @@
     "code": "AU-SONY-WH1000XM4",
     "stock": 20,
     "category": "Audio",
+    "status": true
+  },
+  {
+    "id": 7,
+    "title": "Ferrari aventador",
+    "description": "El mejor auto del mundo",
+    "price": 89999.99,
+    "thumbnails": [
+      "url4",
+      "url6"
+    ],
+    "code": "JGH343",
+    "stock": 2,
+    "category": "cars",
     "status": true
   }
 ]

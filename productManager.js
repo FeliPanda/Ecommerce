@@ -35,7 +35,9 @@ class ProductManager {
         };
 
         products.push(newProduct);
+        console.log('nuevo producto agregado:' + newProduct);
         this.saveProductsToFile(products);
+        console.log('producto pusheado:' + products);
         return newProduct;
     }
 
