@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true })); // para que el servidor pueda r
 
 // Agregar el enrutador como middleware
 app.use('/api', productsRouter); // prefijo '/api' para las rutas
-//app.use('/api', cartsRouter); // prefijo '/api' para las rutas
+app.use('/api/carts', cartsRouter); // prefijo '/api' para las rutas
 
 // Activar servidor
 app.listen(PORT, () => {

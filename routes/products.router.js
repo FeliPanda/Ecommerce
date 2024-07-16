@@ -1,15 +1,16 @@
 const express = require('express');
-const ProductManager = require('../ProductManager');
+const ProductManager = require('../productManager');
 const router = express.Router();
 
 const productManager = new ProductManager('./products.json');
 
 // Ruta para obtener todos los productos
+// Ruta para obtener todos los productos
 router.get('/products', (req, res) => {
     const products = productManager.getProducts();
-
+    console.log(products);
     // Aplicar el limit si se brinda
-    const limit = req.query.limit;
+    const limit = parseInt(req.query.limit);
     if (limit) {
         const limitedProducts = products.slice(0, limit);
         res.json(limitedProducts);
