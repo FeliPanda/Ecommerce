@@ -1,12 +1,13 @@
 [
   {
+        
     "id": 1,
     "title": "Smartphone Galaxy S22",
     "description": "Nuevo modelo de smartphone con cámara de alta resolución.",
     "price": 0,
     "thumbnails": [
-      "url1",
-      "url2"
+        "url1",
+        "url2"
     ],
     "code": "PHN123",
     "stock": 5,

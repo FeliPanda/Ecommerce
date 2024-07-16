@@ -16,3 +16,6 @@ app.use('/api/carts', cartsRouter); // prefijo '/api' para las rutas
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+
+

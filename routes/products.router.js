@@ -50,7 +50,7 @@ router.post('/products', (req, res) => {
 
     const addedProduct = productManager.addProduct(newProduct);
 
-    res.status(201).json(addedProduct);
+    res.status(201).json({ message: 'Producto agregado correctamente.' } + addedProduct);
 });
 
 // Ruta para actualizar un producto por ID
@@ -66,7 +66,7 @@ router.put('/products/:pid', (req, res) => {
     const updatedProduct = productManager.updateProduct(productId, updatedFields);
 
     if (updatedProduct) {
-        res.json(updatedProduct);
+        res.json({ message: 'Producto actualizado correctamente.' } + updatedProduct);
     } else {
         res.status(404).json({ message: 'Producto no encontrado o no se pudo actualizar' });
     }
@@ -77,7 +77,7 @@ router.delete('/products/:pid', (req, res) => {
     const productId = parseInt(req.params.pid);
     const deletedProduct = productManager.deleteProduct(productId);
     if (deletedProduct) {
-        res.json(deletedProduct);
+        res.json({ message: 'Producto eliminado correctamente.', product: deletedProduct });
     } else {
         res.status(404).json({ message: 'Producto no encontrado o no se pudo eliminar' });
     }
