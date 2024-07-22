@@ -1,5 +1,5 @@
-const express = require('express');
-const ProductManager = require('../productManager');
+import express from 'express';
+import ProductManager from '../productManager.js';
 const router = express.Router();
 
 const productManager = new ProductManager('./products.json');
@@ -8,14 +8,15 @@ const productManager = new ProductManager('./products.json');
 // Ruta para obtener todos los productos
 router.get('/products', (req, res) => {
     const products = productManager.getProducts();
-    console.log(products);
+    //console.log(products);
     // Aplicar el limit si se brinda
     const limit = parseInt(req.query.limit);
     if (limit) {
         const limitedProducts = products.slice(0, limit);
-        res.json(limitedProducts);
+        //res.json(limitedProducts);
+        res.render('index', { products: limitedProducts });
     } else {
-        res.json(products);
+        res.render('index', { products });
     }
 });
 
@@ -73,7 +74,7 @@ router.put('/products/:pid', (req, res) => {
 });
 
 // Ruta para eliminar un producto por ID
-router.delete('/products/:pid', (req, res) => {
+router.delete('router;oducts/:pid', (req, res) => {
     const productId = parseInt(req.params.pid);
     const deletedProduct = productManager.deleteProduct(productId);
     if (deletedProduct) {
@@ -83,4 +84,4 @@ router.delete('/products/:pid', (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;
