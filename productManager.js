@@ -88,5 +88,4 @@ class ProductManager {
     }
 }
 
-// Exporta la clase ProductManager para que pueda ser utilizada en otros archivos
 export default ProductManager;

@@ -1,5 +1,7 @@
 import express from 'express';
 import ProductManager from '../productManager.js';
+import { io } from '../app.js'; // Importar el servidor io
+
 const router = express.Router();
 
 const productManager = new ProductManager('./products.json');
@@ -51,7 +53,9 @@ router.post('/products', (req, res) => {
 
     const addedProduct = productManager.addProduct(newProduct);
 
-    res.status(201).json({ message: 'Producto agregado correctamente.' } + addedProduct);
+
+
+    res.status(201).json({ message: 'Producto agregado correctamente.', product: addedProduct });
 });
 
 // Ruta para actualizar un producto por ID
