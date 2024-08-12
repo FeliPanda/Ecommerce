@@ -8,6 +8,7 @@ const productManager = new ProductManager();
 router.get('/products', async (req, res) => {
     try {
         const products = await productManager.getProducts();
+        console.log(products);
         const limit = parseInt(req.query.limit, 10);
         const limitedProducts = limit ? products.slice(0, limit) : products;
         res.render('index', { products: limitedProducts });

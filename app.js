@@ -24,7 +24,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Configuración de Handlebars
 app.engine('handlebars', handlebars.engine({
-    partialsDir: path.join(__dirname, 'views/partials'), // Configura la carpeta de vistas parciales
+    partialsDir: path.join(__dirname, 'views/partials'),
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,  
+        allowProtoMethodsByDefault: true,     
+    }
 }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
@@ -34,8 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Rutas
 app.use('/api', productsRouter);
-app.use('/api/', cartsRouter);
-app.use('/', viewsRouter); // Cambiado a '/' para las vistas principales
+app.use('/api', cartsRouter);
+app.use('/', viewsRouter); 
 
 // Configuración de WebSocket
 io.on('connection', (socket) => {
@@ -47,8 +51,7 @@ export { io };
 
 // Conectar a la DB
 mongoose.connect('mongodb+srv://Felipanda:1jPwdOs2hhn3HbWD@cluster0.tpicd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    
 }).then(() => {
     console.log('¡Conexión exitosa a tu DB en MongoDB Atlas!');
 }).catch((error) => {
