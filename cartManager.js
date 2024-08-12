@@ -6,29 +6,38 @@ class CartManager {
         this.initializeFile();
     }
 
-    initializeFile() {
+    async initializeFile() {
         if (!fs.existsSync(this.path)) {
             fs.writeFileSync(this.path, JSON.stringify([]));
         }
     }
 
-    getCartsFromFile() {
+    async getAllCarts() {
+        return await this.getCartsFromFile();
+    }
+
+    async getCartsFromFile() {
         const jsonString = fs.readFileSync(this.path, 'utf-8');
         return JSON.parse(jsonString);
     }
 
-    saveCartsToFile(carts) {
+    async saveCartsToFile(carts) {
         fs.writeFileSync(this.path, JSON.stringify(carts, null, 2));
     }
 
-    generateRandomId() {
-        return 'xxx'.replace(/[x]/g, () => (Math.random() * 36 | 0).toString(36));
+    getNextId(carts) {
+        if (carts.length === 0) {
+            return 1;
+        }
+        const lastCart = carts[carts.length - 1];
+        return lastCart.id + 1;
     }
 
-    createCart() {
+    async createCart() {
         const carts = this.getCartsFromFile();
+        const newId = this.getNextId(carts);
         const newCart = {
-            id: this.generateRandomId(),
+            id: newId,
             products: [],
         };
         carts.push(newCart);
@@ -36,13 +45,13 @@ class CartManager {
         return newCart;
     }
 
-    getProductsByCartId(cartId) {
-        const carts = this.getCartsFromFile();
-        const cart = carts.find(c => c.id === cartId);
+    async getProductsByCartId(cartId) {
+        const carts = await this.getCartsFromFile();
+        const cart = carts.find(c => c.id.toString() === cartId.toString());
         return cart ? cart.products : null;
     }
 
-    addProductToCart(cartId, productId, quantity) {
+    async addProductToCart(cartId, productId, quantity) {
         const carts = this.getCartsFromFile();
         const cart = carts.find(c => c.id === cartId);
         if (!cart) {
@@ -61,5 +70,6 @@ class CartManager {
         return cart;
     }
 }
+
 
 export default CartManager;

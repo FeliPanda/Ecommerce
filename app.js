@@ -2,10 +2,16 @@ import express from 'express';
 import { Server } from 'socket.io';
 import http from 'http';
 import handlebars from 'express-handlebars';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
 import viewsRouter from './routes/views.router.js';
-import __dirname from './utils.js';
+import mongoose from 'mongoose';
+
+// Obtener el directorio actual
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = 8080;
@@ -17,17 +23,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Configuración de Handlebars
-app.engine('handlebars', handlebars.engine());
-app.set('views', __dirname + '/views');
+app.engine('handlebars', handlebars.engine({
+    partialsDir: path.join(__dirname, 'views/partials'), // Configura la carpeta de vistas parciales
+}));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
 // Recursos estáticos
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Rutas
 app.use('/api', productsRouter);
-app.use('/api/carts', cartsRouter);
-app.use('/api', viewsRouter);
+app.use('/api/', cartsRouter);
+app.use('/', viewsRouter); // Cambiado a '/' para las vistas principales
 
 // Configuración de WebSocket
 io.on('connection', (socket) => {
@@ -37,8 +45,17 @@ io.on('connection', (socket) => {
 // Exportar io para usarlo en los routers
 export { io };
 
+// Conectar a la DB
+mongoose.connect('mongodb+srv://Felipanda:1jPwdOs2hhn3HbWD@cluster0.tpicd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => {
+    console.log('¡Conexión exitosa a tu DB en MongoDB Atlas!');
+}).catch((error) => {
+    console.error('Error al conectar a MongoDB Atlas:', error);
+});
+
 // Iniciar el servidor
 httpServer.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
-

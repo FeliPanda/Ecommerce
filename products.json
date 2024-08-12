@@ -1,95 +1,159 @@
 [
   {
     "id": 1,
-    "title": "Smartphone Galaxy S22",
-    "description": "Nuevo modelo de smartphone con cámara de alta resolución.",
-    "price": 0,
+    "title": "Café Juan Valdez Molido Suave",
+    "description": "Café 100% colombiano, molido para un sabor suave y balanceado.",
+    "price": 12.99,
     "thumbnails": [
-      "https://images.samsung.com/is/image/samsung/p6pim/ar/2202/gallery/ar-galaxy-s22-s901-sm-s901ezklaro-530921587?$650_519_PNG$",
-      "https://i.blogs.es/ac3971/img_4755/1366_2000.jpeg"
+        "https://http2.mlstatic.com/D_858972-MLA74782531475_022024-C.jpg"
     ],
-    "code": "PHN123",
-    "stock": 5,
-    "category": "Electronics",
+    "code": "CAFE123",
+    "stock": 50,
+    "category": "Food",
     "status": true
   },
   {
     "id": 2,
-    "title": "Laptop Lenovo ThinkPad",
-    "description": "Potente laptop para negocios y productividad.",
-    "price": 1299.99,
+    "title": "Café Quindío Grano Entero Fuerte",
+    "description": "Café colombiano de altura, grano entero para mayor control de la molienda y frescura.",
+    "price": 19.99,
     "thumbnails": [
-      "data:image/jpeg;base64,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"
-      
+      "https://m.media-amazon.com/images/I/414nIe6uD8L._AC_.jpg"
     ],
-    "code": "LAP456",
-    "stock": 20,
-    "category": "Electronics",
-    "status": true
-  },
-  {
-    "id": 3,
-    "title": "Botines Nike Mercurial",
-    "description": "Botines de fútbol de alta gama.",
-    "price": 199.99,
-    "thumbnails": [
-      "https://img.freepik.com/foto-gratis/vista-coloridos-zapatos-futbol_23-2150887481.jpg?t=st=1723219690~exp=1723223290~hmac=6094439fa87f092649405c101fb8354483d2f636b873b4247cc33fc813fb25d7&w=740"
-    ],
-    "code": "BOT789",
+    "code": "CAFE456",
     "stock": 30,
-    "category": "Sports",
+    "category": "Food",
     "status": true
   },
   {
-    "id": 5,
-    "title": "Samsung Galaxy S21 Ultra",
-    "description": "Flagship smartphone with 6.8-inch AMOLED display and quad-camera setup.",
-    "price": 1199.99,
+    "id": 3,  
+    "title": "Café Colombia Supremo en Cápsulas",
+    "description": "Cápsulas compatibles con Nespresso® para un café colombiano intenso y aromático.",
+    "price": 24.99,
     "thumbnails": [
-      "data:image/jpeg;base64,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"
+      "https://www.lafazenda.com.ar/uploads/productos/capsulas_nuevas_colombia_x_25.webp"
     ],
-    "code": "PH-SAMSUNG-S21-ULTRA",
-    "stock": 30,
-    "category": "Smartphones",
+    "code": "CAFE789",
+    "stock": 25,
+    "category": "Food",
     "status": true
   },
-  {
-    "id": 6,
-    "title": "Sony WH-1000XM4 Wireless Headphones",
-    "description": "Auriculares con cancelación de ruido",
-    "price": 349.99,
-    "thumbnails": [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6Vas6NHVGgYj0ALXp4Znsmz7WX_6cEL3daA&s"
-    ],
-    "code": "AU-SONY-WH1000XM4",
-    "stock": 20,
-    "category": "Audio",
-    "status": true
-  },
-  {
-    "id": 7,
-    "title": "Lamborghini aventador",
-    "description": "El mejor auto del mundo",
-    "price": 89999.99,
-    "thumbnails": [
-      "data:image/jpeg;base64,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"
-    ],
-    "code": "JGH343",
-    "stock": 2,
-    "category": "cars",
-    "status": true
-  },
-  {
-    "id": 8,
-    "title": "Luxury Car",
-    "description": "La mejor moto del mundo",
-    "price": 100000,
-    "thumbnails": [
-      "https://lamoto.com.ar/wp-content/uploads/2021/10/Suzuki-Hayabusa.jpg"
-    ],
-    "code": "LC2024",
-    "stock": 10,
-    "category": "Luxury",
-    "status": true
-  }
+    {
+      "id": 4,
+      "title": "Café Platino en Grano",
+      "description": "Café 100% colombiano de origen, ideal para moler en casa.",
+      "price": 22.99,
+      "thumbnails": [
+        "https://cafeplatino.com/wp-content/uploads/2021/10/09-colombia-excelso-descafeinado-1-cafe-de-origen.jpg"
+      ],
+      "code": "CAFE987",
+      "stock": 40,
+      "category": "Food",
+      "status": true
+    },
+    {
+      "id": 5,
+      "title": "Café  Juan Valdez",
+      "description": "Café origen sierra nevada en grano 454 gr.",
+      "price": 15.99,
+      "thumbnails": [
+        "https://acdn.mitiendanube.com/stores/002/452/709/products/91-888a1ad1d5edfcc70116904123844901-1024-1024.webp"
+      ],
+      "code": "CAFE111",
+      "stock": 35,
+      "category": "Food",
+      "status": true
+    },
+    {
+      "id": 6,
+      "title": "Café Orgánico Colombiano",
+      "description": "Café Finca en grano 454gr.",
+      "price": 25.99,
+      "thumbnails": [
+        "https://acdn.mitiendanube.com/stores/002/452/709/products/1-b693bc43828bf5f17f17059336473069-1024-1024.webp"
+      ],
+      "code": "CAFE222",
+      "stock": 20,
+      "category": "Food",
+      "status": true
+    },
+    {
+      "id": 7,
+      "title": "Café  Juan Valdez DRIPS",
+      "description": "Café Drips Colina Caja x5 Und.",
+      "price": 18.99,
+      "thumbnails": [
+        "https://acdn.mitiendanube.com/stores/002/452/709/products/41052337-caja-x-5-drip-colina-nv-931cc4e0ec12fb3d1817163877252670-1024-1024.webp"
+      ],
+      "code": "CAFE333",
+      "stock": 28,
+      "category": "Food",
+      "status": true
+    },
+    {
+      "id": 8,
+      "title": "Café  Juan Valdez Fuerte",
+      "description": "Café Volcán en granos 454gr.",
+      "price": 21.99,
+      "thumbnails": [
+        "https://acdn.mitiendanube.com/stores/002/452/709/products/421-88f91aa6da86c7dc5816904145958876-640-0.webp"
+      ],
+      "code": "CAFE444",
+      "stock": 32,
+      "category": "Food",
+      "status": true
+    },
+    {
+      "id": 9,
+      "title": "Café  Juan Valdez  Nariño",
+      "description": "Cultivado en las montañas colombianas para un sabor excepcional.",
+      "price": 27.99,
+      "thumbnails": [
+        "https://acdn.mitiendanube.com/stores/002/452/709/products/181-8fad325913381f29b616904121989863-640-0.webp"
+      ],
+      "code": "CAFE555",
+      "stock": 25,
+      "category": "Food",
+      "status": true
+    },
+    {
+      "id": 10,
+      "title": "Café Colombiano Matiz Baileys",
+      "description": "Cafe MATIZ SABORIZADO BAILEYS 240 gr",
+      "price": 19.99,
+      "thumbnails": [
+        "https://exitocol.vtexassets.com/arquivos/ids/24084434/Cafe-Saborizado-Baileys-MATIZ-240-gr-3415888_a.jpg?v=638588707187000000"
+      ],
+      "code": "CAFE666",
+      "stock": 30,
+      "category": "Food",
+      "status": true
+    },
+    {
+      "id": 11,
+      "title": "Café  Juan Valdez  Santander",
+      "description": "Café Origen Santander en granos 454gr",
+      "price": 16.99,
+      "thumbnails": [
+        "https://acdn.mitiendanube.com/stores/002/452/709/products/31-75427fb5c6cde2789a16904123346249-640-0.webp"
+      ],
+      "code": "CAFE777",
+      "stock": 35,
+      "category": "Food",
+      "status": true
+    },
+    {
+      "id": 12,
+      "title": "Café Colombiano MATIZ",
+      "description": "Cafe Molido Montblanc MATIZ 340 gr",
+      "price": 14.99,
+      "thumbnails": [
+        "https://exitocol.vtexassets.com/arquivos/ids/15686756/Cafe-Molido-MATIZ-340-gr-3113411_a.jpg?v=638049360370570000"
+      ],
+      "code": "CAFE888",
+      "stock": 40,
+      "category": "Food",
+      "status": true
+    }
+  
 ]

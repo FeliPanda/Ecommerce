@@ -1,19 +1,24 @@
-<h1>Productos</h1>
-<div class="row">
-    {{#each products}}
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-        <div class="card card-fixed-size">
-            <img src="{{this.thumbnails}}" class="card-img-top" alt="{{this.title}}">
-            <div class="card-body">
-                <h5 class="card-title">{{this.title}}</h5>
-                <p class="card-text">{{this.description}}</p>
-                <p class="card-text">Price: ${{this.price}}</p>
-                <p class="card-text">Category: {{this.category}}</p>
-                <p class="card-text">Stock: {{this.stock}}</p>
-                <a href="#" class="btn btn-primary">Ver Details</a>
+<!-- views/partials/navbar.handlebars -->
+<div class="container">
+    <h1 class="my-4">Nuestros Cafés</h1>
+    <div class="row g-2"> <!-- Utiliza 'g-2' para ajustar el espacio entre columnas -->
+        {{#each products}}
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card card-fixed-size">
+                <img src="{{this.thumbnails}}" class="card-img-top" alt="{{this.title}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <p class="card-text">{{this.description}}</p>
+                    <p class="card-text">Price: ${{this.price}}</p>
+                    <p class="card-text">Category: {{this.category}}</p>
+                    <p class="card-text">Stock: {{this.stock}}</p>
+                    <a href="/Ecommerce/views/productDetail.handlebars" class="btn btn-primary">Detalles</a>
+                    <a href="#" class="btn btn-primary">Añadir al carrito</a>
+                </div>
             </div>
         </div>
+        {{/each}}
     </div>
-    {{/each}}
 </div>
+
 
