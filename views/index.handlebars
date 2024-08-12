@@ -1,7 +1,7 @@
-<!-- views/partials/navbar.handlebars -->
+
 <div class="container">
     <h1 class="my-4">Nuestros Cafés</h1>
-    <div class="row g-2"> <!-- Utiliza 'g-2' para ajustar el espacio entre columnas -->
+    <div class="row g-2"> 
         {{#each products}}
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card card-fixed-size">
@@ -12,7 +12,7 @@
                     <p class="card-text">Price: ${{this.price}}</p>
                     <p class="card-text">Category: {{this.category}}</p>
                     <p class="card-text">Stock: {{this.stock}}</p>
-                    <a href="/Ecommerce/views/productDetail.handlebars" class="btn btn-primary">Detalles</a>
+                    <a href="/api/products/{{this._id}}" class="btn btn-primary">Detalles</a>
                     <a href="#" class="btn btn-primary">Añadir al carrito</a>
                 </div>
             </div>
