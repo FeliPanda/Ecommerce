@@ -3,88 +3,94 @@ import ProductManager from '../productManager.js';
 import { io } from '../app.js'; // Importar el servidor io
 
 const router = express.Router();
+const productManager = new ProductManager();
 
-const productManager = new ProductManager('./products.json');
-
-// Ruta para obtener todos los productos
-// Ruta para obtener todos los productos
-router.get('/products', (req, res) => {
-    const products = productManager.getProducts();
-    //console.log(products);
-    // Aplicar el limit si se brinda
-    const limit = parseInt(req.query.limit);
-    if (limit) {
-        const limitedProducts = products.slice(0, limit);
-        //res.json(limitedProducts);
+router.get('/products', async (req, res) => {
+    try {
+        const products = await productManager.getProducts();
+        const limit = parseInt(req.query.limit, 10);
+        const limitedProducts = limit ? products.slice(0, limit) : products;
         res.render('index', { products: limitedProducts });
-    } else {
-        res.render('index', { products });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error al obtener productos' });
     }
 });
 
-// Ruta para obtener un producto por ID
-router.get('/products/:pid', (req, res) => {
-    const productId = parseInt(req.params.pid);
-    const product = productManager.getProductById(productId);
-    if (product) {
-        res.json(product);
-    } else {
-        res.status(404).json({ message: 'Producto no encontrado' });
+router.get('/products/:pid', async (req, res) => {
+    const productId = req.params.pid;
+    try {
+        const product = await productManager.getProductById(productId);
+        if (product) {
+            res.render('productDetail', { product });
+        } else {
+            res.status(404).json({ message: 'Producto no encontrado' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error al obtener producto por ID' });
     }
 });
 
-// Ruta para agregar un nuevo producto
-router.post('/products', (req, res) => {
+router.post('/products', async (req, res) => {
     const { title, description, code, price, stock, category, thumbnails } = req.body;
 
     if (!title || !description || !code || !price || !stock || !category) {
         return res.status(400).json({ message: 'Todos los campos son obligatorios excepto thumbnails.' });
     }
 
-    const newProduct = {
-        title,
-        description,
-        code,
-        price,
-        stock,
-        category,
-        thumbnails: thumbnails || [] // Establecer thumbnails como un array vacío si no se proporciona
-    };
+    try {
+        const newProduct = {
+            title,
+            description,
+            code,
+            price,
+            stock,
+            category,
+            thumbnails: thumbnails || []
+        };
 
-    const addedProduct = productManager.addProduct(newProduct);
-
-
-
-    res.status(201).json({ message: 'Producto agregado correctamente.', product: addedProduct });
+        const addedProduct = await productManager.addProduct(newProduct);
+        res.status(201).json({ message: 'Producto agregado correctamente.', product: addedProduct });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error al agregar producto' });
+    }
 });
 
-// Ruta para actualizar un producto por ID
-router.put('/products/:pid', (req, res) => {
-    const productId = parseInt(req.params.pid);
+router.put('/products/:pid', async (req, res) => {
+    const productId = req.params.pid;
     const updatedFields = req.body;
 
-    // Eliminar el campo id del objeto updatedFields si está presente
     if ('id' in updatedFields) {
         delete updatedFields.id;
     }
 
-    const updatedProduct = productManager.updateProduct(productId, updatedFields);
-
-    if (updatedProduct) {
-        res.json({ message: 'Producto actualizado correctamente.' } + updatedProduct);
-    } else {
-        res.status(404).json({ message: 'Producto no encontrado o no se pudo actualizar' });
+    try {
+        const updatedProduct = await productManager.updateProduct(productId, updatedFields);
+        if (updatedProduct) {
+            res.json({ message: 'Producto actualizado correctamente.', product: updatedProduct });
+        } else {
+            res.status(404).json({ message: 'Producto no encontrado o no se pudo actualizar' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error al actualizar producto' });
     }
 });
 
-// Ruta para eliminar un producto por ID
-router.delete('router;oducts/:pid', (req, res) => {
-    const productId = parseInt(req.params.pid);
-    const deletedProduct = productManager.deleteProduct(productId);
-    if (deletedProduct) {
-        res.json({ message: 'Producto eliminado correctamente.', product: deletedProduct });
-    } else {
-        res.status(404).json({ message: 'Producto no encontrado o no se pudo eliminar' });
+router.delete('/products/:pid', async (req, res) => {
+    const productId = req.params.pid;
+    try {
+        const deletedProduct = await productManager.deleteProduct(productId);
+        if (deletedProduct) {
+            res.json({ message: 'Producto eliminado correctamente.', product: deletedProduct });
+        } else {
+            res.status(404).json({ message: 'Producto no encontrado o no se pudo eliminar' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error al eliminar producto' });
     }
 });
 

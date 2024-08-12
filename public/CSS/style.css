@@ -1,27 +1,67 @@
 body {
     overflow-x: hidden; 
+    background-color:  #D8C1AA !important;
+    background-attachment: fixed;
+    font-family:  Kavoon !important;
+    font-size: 1.5em !important;
 }
+
+/*  Navbar*/
+
+.navbar {
+    padding: 0.5rem 1rem;
+    padding-right: 3rem !important;
+    
+}
+
+.navbar-brand {
+    margin-right: auto; /* Empuja el logo hacia la izquierda */
+    .img{
+        padding-left: 3rem;
+    }
+}
+
+.navbar-nav {
+    margin-left: auto; /* Empuja los elementos del menú hacia la derecha */
+}
+
+.navbar-nav .nav-link {
+    color: #D8C1AA; /* Color del texto de los enlaces */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #fff; /* Color del texto de los enlaces al pasar el ratón */
+}
+
+.my-4{
+    padding-bottom: 5rem;
+    padding-top: 3rem !important;
+    color: #382828 ;
+    font-family:  Kavoon;
+    font-size: 4rem;
+}
+
 .card-fixed-size {
     width: 100%; 
     max-width: 18rem; 
     height: 24rem;
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px; 
+    margin-bottom: 10px; 
     border: 1px solid #ddd;
     border-radius: 0.5rem;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease-in-out;
-    
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .card-fixed-size:hover {
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
 }
 
 .card-img-top {
-    object-fit: cover;
-    height: 12rem;
+    
+    height: 18rem;
     width: 100%;
 }
 
@@ -31,6 +71,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color:#ac8965 ;
+    
 }
 
 .card-title {
@@ -44,18 +86,22 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: #382828;
 }
 
 .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #805a38 !important;
+    border-color: #805a38 !important;
     margin-top: auto;
+    margin-bottom: 0.7rem !important;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
+    background-color: #694b2f !important;
+    border-color: #694b2f !important;
 }
+
+
 
 @media (max-width: 768px) {
     .card-fixed-size {
@@ -63,13 +109,63 @@ body {
     }
 }
 
-.row {
-    margin-left: 0;
-    margin-right: 0;
-    
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 10rem;
+    }
 }
 
-.col-lg-4, .col-md-6, .col-sm-12 {
-    padding-left: 50px !important; 
-    padding-right: 5px;
+
+@media (max-width: 768px) {
+    .img-fluid {
+        margin-bottom: 0.5rem;
+    }
+
+    .col-md-6 {
+        text-align: center;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+}
+
+.detailContainer{
+    margin-top: 80px !important;
+    border-color: #d1e2f8 !important;
+    border-width: 3px;
+    border-style: solid;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    max-width: 250px;
+    max-height: 770px;
+    margin: 10px;
+}
+
+.detailContainer:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.detailContainer img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.detailContainer p {
+    color: black;
+    font-size: 16px;
+    margin: 0;
+}
+
+.textCard {
+    
+    justify-content: space-between;
+    padding: 5rem;
+    padding-left: 4rem !important;
 }
