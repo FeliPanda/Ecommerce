@@ -4,8 +4,7 @@ class ProductManager {
 
     // Método para agregar productos
     async addProduct({ title, description, price, thumbnails = [], code, stock, category }) {
-        const newProduct = {
-            id: this.getNextId(),
+        const newProduct = new Product({
             title,
             description,
             price,
@@ -14,15 +13,19 @@ class ProductManager {
             stock,
             category,
             status: true
-        };
+        });
+
         try {
-            const savedProduct = await newProduct.save();
+            const savedProduct = await newProduct.save(); // Usa el modelo Product para guardar el nuevo producto
             console.log('Nuevo producto agregado', savedProduct);
-        } catch {
-            console.error('no se puede agregar el producto', error);
+            return savedProduct;
+        } catch (error) {
+            console.error('No se puede agregar el producto', error);
             throw error;
         }
     }
+
+
 
     async getProducts() {
         try {
@@ -33,29 +36,29 @@ class ProductManager {
         }
     }
 
-    // Obtener producto por ID
-    async getProductById(id) {
+    async getProductById(productId) { // Cambiado a productId
         try {
-            return await Product.findById(id);
+            return await Product.findById(productId);
         } catch (error) {
             console.error('Error al obtener producto por ID:', error);
         }
     }
 
-    async updateProduct(id, updatedFields) {
+    async updateProduct(productId, updatedFields) { // Cambiado a productId
         try {
-            return await Product.findOneAndUpdate(id, updatedFields, { new: true });
+            return await Product.findByIdAndUpdate(productId, updatedFields, { new: true });
         } catch (error) {
-            console.error('no se pudo actualizar el producto', error);
+            console.error('No se pudo actualizar el producto', error);
             throw error;
         }
     }
 
-    async deleteProduct(id) {
+    async deleteProduct(productId) { // Cambiado a productId
         try {
-            return await Product.findOneAndDelete(id)
+            return await Product.findByIdAndDelete(productId);
         } catch (error) {
             console.error(error);
+            throw error;
         }
     }
 }

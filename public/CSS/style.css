@@ -1,176 +1,203 @@
 body {
-    overflow-x: hidden; 
-    background-color:  #fff !important;
-    background-attachment: fixed;
-    font-family:  Georgia, 'Times New Roman', Times, serif !important;
-    font-size: 1.5em !important;
+  overflow-x: hidden;
+  background-color: #fff !important;
+  background-attachment: fixed;
+  font-family: Georgia, "Times New Roman", Times, serif !important;
+  font-size: 1.5em !important;
 }
 
 /*  Navbar*/
 
 .navbar {
-    padding: 0.5rem 1rem;
-    padding-right: 3rem !important;
-    background-color: #3a2e2e;
-    
+  padding: 0.5rem 1rem;
+  padding-right: 3rem !important;
+  background-color: #3a2e2e;
 }
 
 .navbar-brand {
-    margin-right: auto; 
-    .img{
-        padding-left: 3rem;
-    }
+  margin-right: auto;
+  .img {
+    padding-left: 3rem;
+  }
 }
 
 .navbar-nav {
-    margin-left: auto; 
+  margin-left: auto;
 }
 
 .navbar-nav .nav-link {
-    color: #D8C1AA; 
+  color: #d8c1aa;
 }
 
 .navbar-nav .nav-link:hover {
-    color: #b9a692 !important; 
+  color: #b9a692 !important;
 }
 
-.d-inline-block{
-    padding-left: 0.5rem;
+.d-inline-block {
+  padding-left: 0.5rem;
 }
 
-.my-4{
-    padding-bottom: 5rem;
-    padding-top: 1rem !important;
-    color: #382828 ;
-    font-family:  Georgia, 'Times New Roman', Times, serif !important;
-    font-size: 4rem;
+.my-4 {
+  padding-bottom: 5rem;
+  padding-top: 1rem !important;
+  color: #382828;
+  font-family: Georgia, "Times New Roman", Times, serif !important;
+  font-size: 4rem;
 }
 
 .card-fixed-size {
-    width: 100%; 
-    max-width: 18rem; 
-    height: 24rem;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px; 
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  width: 100%;
+  max-width: 18rem;
+  height: 24rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .card-fixed-size:hover {
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
 }
 
 .card-img-top {
-    
-    height: 18rem;
-    width: 100%;
+  height: 18rem;
+  width: 100%;
 }
 
 .card-body {
-    flex: 1;
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color:#ac8965 ;
-    
+  flex: 1;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ac8965;
 }
 
 .card-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
 .card-text {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: #382828;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #382828;
 }
 
 .btn-primary {
-    background-color: #805a38 !important;
-    border-color: #805a38 !important;
-    margin-top: auto;
-    margin-bottom: 0.7rem !important;
+  background-color: #805a38 !important;
+  border-color: #805a38 !important;
+  margin-top: auto;
+  margin-bottom: 0.7rem !important;
 }
 
 .btn-primary:hover {
-    background-color: #694b2f !important;
-    border-color: #694b2f !important;
-}
-
-
-
-@media (max-width: 768px) {
-    .card-fixed-size {
-        margin-bottom: 10px; 
-    }
+  background-color: #694b2f !important;
+  border-color: #694b2f !important;
 }
 
 @media (max-width: 768px) {
-    .card-img-top {
-        height: 10rem;
-    }
+  .card-fixed-size {
+    margin-bottom: 10px;
+  }
 }
-
 
 @media (max-width: 768px) {
-    .img-fluid {
-        margin-bottom: 0.5rem;
-    }
-
-    .col-md-6 {
-        text-align: center;
-    }
-
-    .btn-primary {
-        width: 100%;
-    }
+  .card-img-top {
+    height: 10rem;
+  }
 }
 
-.detailContainer{
-    margin-top: 80px !important;
-    border-color: #d1e2f8 !important;
-    border-width: 3px;
-    border-style: solid;
-    padding: 10px;
-    background-color: #f2f2f2;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease-in-out;
-    overflow: hidden;
-    position: relative;
-    max-width: 250px;
-    max-height: 770px;
-    margin: 10px;
+@media (max-width: 768px) {
+  .img-fluid {
+    margin-bottom: 0.5rem;
+  }
+
+  .col-md-6 {
+    text-align: center;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}
+
+/*  Detalle del producto */
+
+.detailContainer {
+  margin-top: 30px !important;
+  border-color: #8d8986 !important;
+  border-width: 3px;
+  border-style: solid;
+  padding: top 0 !important;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+  overflow: hidden;
+  position: relative;
+  max-width: 250px;
+  max-height: 670px;
+  margin: 10px;
 }
 
 .detailContainer:hover {
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .detailContainer img {
-    width: 100%;
-    height: auto;
-    cursor: pointer;
+  width: 100%;
+  height: 60%;
+  cursor: pointer;
+  object-fit: contain !important;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+  
 }
 
 .detailContainer p {
-    color: black;
-    font-size: 16px;
-    margin: 0;
+  color: black;
+  font-size: 16px;
+  margin: 0;
 }
 
 .textCard {
-    
-    justify-content: space-between;
-    padding: 5rem;
-    padding-left: 4rem !important;
+  justify-content: space-between;
+  padding: 5rem;
+  padding-left: 4rem !important;
+}
+
+.btn-cart{
+  width: 100% !important;
+}
+
+.input-quantity {
+  width: 4rem !important;
+  min-width: 3rem !important;
+  max-width: max-content !important; 
+  padding: 8px !important; 
+  margin-bottom: 10px !important;
+  font-size: 16px !important ;
+  border: 1px solid #ccc !important; 
+  border-radius: 4px !important; 
+  outline: none !important; 
+  transition: border-color 0.3s !important; 
+}
+
+/* Estilo cuando el input está enfocado */
+.input-quantity:focus {
+  border-color: #3a332d !important;
+}
+.label_cantidad{
+  font-size: 1.3rem;
+  color: #2e2824;
 }
