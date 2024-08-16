@@ -14,6 +14,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Productos</th>
+                    <th>Total</th> <!-- Nueva columna para mostrar el total -->
                 </tr>
             </thead>
             <tbody>
@@ -22,9 +23,19 @@
                     <td>{{this._id}}</td>
                     <td>
                         {{#each this.products}}
-                        <div>Producto: {{this.productId.title}}, Cantidad: {{this.quantity}}</div>
+                        <div>
+                            <img src="{{this.productId.thumbnails}}" alt="{{this.productId.title}}" style="max-width: 150px; height: auto;">
+                        </div>
+                        <div>
+                            <p>
+                                Producto: {{this.productId.title}}<br>
+                                Cantidad: {{this.quantity}}<br>
+                                Precio: ${{this.productId.price}}
+                            </p>
+                        </div>
                         {{/each}}
                     </td>
+                    <td>{{this.total}}</td> <!-- Muestra el total calculado -->
                 </tr>
                 {{/each}}
             </tbody>

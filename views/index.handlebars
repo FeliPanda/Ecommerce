@@ -21,7 +21,7 @@
                         <p class="card-text">Category: {{this.category}}</p>
                         <p class="card-text">Stock: {{this.stock}}</p>
                         <a href="/api/products/{{this._id}}" class="btn btn-primary">Detalles</a>
-                        <form class="add-to-cart-form d-inline" action="/api/carts/{{cartId}}/product/{{this._id}}" method="POST">
+                        <form class="add-to-cart-form d-inline" action="/api/carts/{{cart._id}}/product/{{this._id}}" method="POST">
                             <input type="hidden" name="productId" value="{{this._id}}">
                             <label for="quantity" class="label_cantidad">Cantidad:</label>  
                             <input type="number" name="quantity" value="1" min="1" class="input-quantity">
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 document.querySelectorAll('.add-to-cart-form').forEach(form => {
     form.addEventListener('submit', async function(event) {
@@ -43,6 +43,7 @@ document.querySelectorAll('.add-to-cart-form').forEach(form => {
         const formData = new FormData(this);
         const productId = formData.get('productId');
         const quantity = formData.get('quantity');
+        
 
         console.log('Form Action URL:', this.action); // Imprime la URL a la que se envía la solicitud
         console.log('Product ID:', productId);

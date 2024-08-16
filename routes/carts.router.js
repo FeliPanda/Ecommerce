@@ -24,22 +24,15 @@ router.get('/carts', async (req, res) => {
 
 // Ruta para obtener un carrito específico por ID
 router.get('/carts/:cid', async (req, res) => {
-    const cartId = req.params.cid;
-
-    if (!isValidObjectId(cartId)) {
-        return res.status(400).json({ message: 'ID de carrito inválido' });
-    }
-
     try {
-        const cart = await cartManager.getCartById(cartId);
+        const cart = await cartManager.getCartById(req.params.cid).populate('products.productId');
         if (!cart) {
             return res.status(404).json({ message: 'Carrito no encontrado' });
         }
 
-        // Obtener todos los productos para la vista
-        const products = await productManager.getAllProducts(); // Ajusta según tu método de obtención de productos
-
-        res.render('cartDetail', { cart, products });
+        // Renderizar la vista del carrito con los productos actualizados
+        res.render('cartDetail', { cart });
+        res.render('cartDetail', { cart });
     } catch (error) {
         console.error('Error al obtener el carrito:', error);
         res.status(500).json({ message: 'Error interno del servidor' });
@@ -50,10 +43,6 @@ router.get('/carts/:cid', async (req, res) => {
 router.post('/carts/:cid/product/:pid', async (req, res) => {
     const { cid, pid } = req.params;
     const { quantity } = req.body;
-
-    console.log('Cart ID:', cid); // Imprime el ID del carrito recibido en la solicitud
-    console.log('Product ID:', pid); // Imprime el ID del producto recibido en la solicitud
-    console.log('Quantity:', quantity); // Imprime la cantidad recibida en la solicitud
 
     if (!isValidObjectId(cid) || !isValidObjectId(pid) || isNaN(quantity) || quantity <= 0) {
         return res.status(400).json({ message: 'Datos inválidos' });

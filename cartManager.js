@@ -3,7 +3,18 @@ import Product from './models/products.model.js';
 class CartManager {
     async getAllCarts() {
         try {
-            return await Cart.find({}).populate('products.productId');
+            const carts = await Cart.find({}).populate('products.productId');
+    
+            // Recorrer cada carrito y calcular el total
+            carts.forEach(cart => {
+                let total = 0;
+                cart.products.forEach(product => {
+                    total += product.productId.price * product.quantity;
+                });
+                cart.total = total; // Agrega el total al carrito
+            });
+    
+            return carts;
         } catch (error) {
             console.error('Error al obtener los carritos:', error);
             throw error;
