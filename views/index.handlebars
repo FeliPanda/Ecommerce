@@ -1,15 +1,16 @@
+<!-- plantillas/products.handlebars -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carritos</title>
+    <title>Productos</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
         <h1 class="my-4">Nuestros Cafés</h1>
-        <div class="row g-2"> 
+        <div class="row g-2">
             {{#each products}}
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="card card-fixed-size">
@@ -21,9 +22,9 @@
                         <p class="card-text">Category: {{this.category}}</p>
                         <p class="card-text">Stock: {{this.stock}}</p>
                         <a href="/api/products/{{this._id}}" class="btn btn-primary">Detalles</a>
-                        <form class="add-to-cart-form d-inline" action="/api/carts/{{cartId}}/product/{{this._id}}" method="POST">
+                        <form class="add-to-cart-form d-inline" action="/api/carts/{{this._id}}" method="POST">
                             <input type="hidden" name="productId" value="{{this._id}}">
-                            <label for="quantity" class="label_cantidad">Cantidad:</label>  
+                            <label for="quantity" class="label_cantidad">Cantidad:</label>
                             <input type="number" name="quantity" value="1" min="1" class="input-quantity">
                             <button type="submit" class="btn btn-primary btn-cart">Añadir al carrito</button>
                         </form>
@@ -34,60 +35,58 @@
         </div>
     </div>
 
-   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-document.querySelectorAll('.add-to-cart-form').forEach(form => {
-    form.addEventListener('submit', async function(event) {
-        event.preventDefault(); // Evita el envío normal del formulario
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const forms = document.querySelectorAll('.add-to-cart-form');
+            
+            forms.forEach(form => {
+                form.addEventListener('submit', async (event) => {
+                    event.preventDefault(); // Previene el envío normal del formulario
 
-        const formData = new FormData(this);
-        const productId = formData.get('productId');
-        const quantity = formData.get('quantity');
+                    const formData = new FormData(form);
+                    const action = form.getAttribute('action');
+                    
+                    try {
+                        const response = await fetch(action, {
+                            method: 'POST',
+                            body: formData
+                        });
 
-        console.log('Form Action URL:', this.action); // Imprime la URL a la que se envía la solicitud
-        console.log('Product ID:', productId);
-        console.log('Quantity:', quantity);
-
-        // Enviar datos solo si todo es válido
-        const data = new URLSearchParams(formData).toString();
-
-        try {
-            const response = await fetch(this.action, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: data
-            });
-
-            const result = await response.json();
-
-            if (response.ok) {
-                Swal.fire({
-                    title: 'Producto agregado!',
-                    text: result.message || 'El producto se ha añadido al carrito.',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
+                        const contentType = response.headers.get("content-type");
+                        if (contentType && contentType.includes("application/json")) {
+                            const result = await response.json();
+                            
+                            if (response.ok) {
+                                Swal.fire({
+                                    title: 'Éxito',
+                                    text: 'Producto agregado al carrito',
+                                    icon: 'success'
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: result.message || 'Hubo un problema al agregar el producto',
+                                    icon: 'error'
+                                });
+                            }
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Respuesta inesperada del servidor',
+                                icon: 'error'
+                            });
+                        }
+                    } catch (error) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Error de red o servidor',
+                            icon: 'error'
+                        });
+                    }
                 });
-            } else {
-                Swal.fire({
-                    title: 'Error',
-                    text: result.message || 'No se pudo agregar el producto al carrito.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-            }
-        } catch (error) {
-            Swal.fire({
-                title: 'Error',
-                text: 'Ocurrió un error al agregar el producto al carrito.',
-                icon: 'error',
-                confirmButtonText: 'OK'
             });
-        }
-    });
-});
-</script>
-
+        });
+    </script>
 </body>
 </html>

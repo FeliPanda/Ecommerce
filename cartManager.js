@@ -1,9 +1,21 @@
 import Cart from './models/carts.model.js';
 import Product from './models/products.model.js';
+
 class CartManager {
     async getAllCarts() {
         try {
-            return await Cart.find({}).populate('products.productId');
+            const carts = await Cart.find().populate('products.productId');
+
+            // Calcular el total para cada carrito
+            carts.forEach(cart => {
+                let total = 0;
+                cart.products.forEach(product => {
+                    total += product.productId.price * product.quantity;
+                });
+                cart.total = total; // Agrega el total al carrito
+            });
+
+            return carts;
         } catch (error) {
             console.error('Error al obtener los carritos:', error);
             throw error;
@@ -44,10 +56,12 @@ class CartManager {
 
     async addProductToCart(cartId, productId, quantity) {
         try {
-            const cart = await this.getCartById(cartId);
+            let cart = await this.getCartById(cartId);
+
+            // Si no se encuentra el carrito, crea uno nuevo
             if (!cart) {
                 console.log('Carrito no encontrado, creando uno nuevo.');
-                return await this.createCart();
+                cart = await this.createCart();
             }
 
             const product = await Product.findById(productId);
