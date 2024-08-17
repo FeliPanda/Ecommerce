@@ -75,6 +75,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   background-color: #ac8965;
+  white-space: normal !important;
 }
 
 .card-title {
@@ -87,7 +88,7 @@ body {
   margin-bottom: 0.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: wrap;
   color: #382828;
 }
 
@@ -181,7 +182,7 @@ body {
 }
 
 .input-quantity {
-  width: 4rem !important;
+  width: 3.3rem !important;
   min-width: 3rem !important;
   max-width: max-content !important; 
   padding: 8px !important; 

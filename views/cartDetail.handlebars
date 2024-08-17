@@ -1,37 +1,33 @@
+<!-- plantillas/cartDetails.handlebars -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle del Carrito</title>
-    <link rel="stylesheet" href="/path/to/bootstrap.css">
+    <title>Detalles del Carrito</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
         <h1 class="my-4">Detalles del Carrito</h1>
-        {{#if cart}}
         <div class="row">
-            <div class="col-12">
-                <h2>Carrito ID: {{cart._id}}</h2>
-                <ul class="list-group">
-                    {{#each cart.products}}
-                    <li class="list-group-item">
-                        Producto ID: {{this.productId}} <br>
-                        Cantidad: {{this.quantity}}<br>
-                        producto: {{this.producId.title}}
-
-                    </li>
-                    {{/each}}
-                </ul>
-                <hr>
-                <h2>Agregar Producto</h2>
-                {{#each products}}
+            {{#each cart.products}}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card">
+                    <img src="{{this.productId.thumbnails}}" class="card-img-top" alt="{{this.productId.title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.productId.title}}</h5>
+                        <p class="card-text">{{this.productId.description}}</p>
+                        <p class="card-text">Precio: ${{this.productId.price}}</p>
+                        <p class="card-text">Cantidad: {{this.quantity}}</p>
+                        <p class="card-text">Subtotal: ${{this.quantity * this.productId.price}}</p>
+                        <a href="/api/products/{{this.productId._id}}" class="btn btn-primary">Detalles del Producto</a>
+                    </div>
+                </div>
             </div>
+            {{/each}}
         </div>
-        {{else}}
-        <p>No se encontraron detalles del carrito.</p>
-        {{/if}}
+        <h3 class="mt-4">Total: ${{total}}</h3>
     </div>
-    <script src="/path/to/bootstrap.js"></script>
 </body>
 </html>
