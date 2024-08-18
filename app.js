@@ -8,6 +8,7 @@ import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
 import viewsRouter from './routes/views.router.js';
 import mongoose from 'mongoose';
+import Handlebars from './helpers/handlebarsHelpers.js';
 
 // Obtener el directorio actual
 const __filename = fileURLToPath(import.meta.url);
