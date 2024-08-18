@@ -1,4 +1,3 @@
-<!-- plantillas/products.handlebars -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +32,45 @@
             </div>
             {{/each}}
         </div>
+
+        <!-- Paginación -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {{#if hasPrevPage}}
+                <li class="page-item">
+                    <a class="page-link" href="{{prevLink}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {{else}}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {{/if}}
+                
+                {{#each (range 1 totalPages)}}
+                <li class="page-item {{#ifEquals this ../currentPage}}active{{/ifEquals}}">
+                    <a class="page-link" href="/api/products?page={{this}}">{{this}}</a>
+                </li>
+                {{/each}}
+                
+                {{#if hasNextPage}}
+                <li class="page-item">
+                    <a class="page-link" href="{{nextLink}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                {{else}}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                {{/if}}
+            </ul>
+        </nav>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
