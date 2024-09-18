@@ -190,3 +190,51 @@ Este proyecto es una API de eCommerce construida utilizando Node.js y Express. L
             "description": "Nuevo modelo de smartphone con cámara de alta resolución.",
             "price": 899.99,
             "thumbnails": ["url1",
+
+### Autenticación
+
+#### Registro de usuario
+
+- **POST** `/api/auth/register`
+- **Body**:
+  ```json
+  {
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john@example.com",
+    "password": "password123",
+    "age": 30
+  }
+  ```
+- **Respuesta exitosa**:
+  ```json
+  {
+    "message": "Usuario registrado exitosamente",
+    "user": {
+      "id": "user_id",
+      "email": "john@example.com"
+    }
+  }
+  ```
+
+#### Inicio de sesión
+
+- **POST** `/api/auth/login`
+- **Body**:
+  ```json
+  {
+    "email": "john@example.com",
+    "password": "password123"
+  }
+  ```
+- **Respuesta exitosa**:
+  ```json
+  {
+    "message": "Login exitoso",
+    "user": {
+      "id": "user_id",
+      "email": "john@example.com",
+      "role": "user"
+    }
+  }
+  ```
