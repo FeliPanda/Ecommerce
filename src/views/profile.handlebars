@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>Perfil de Usuario</h2>
+    {{#if user}}
+        <p>Nombre: {{user.first_name}} {{user.last_name}}</p>
+        <p>Correo electrónico: {{user.email}}</p>
+        {{#if user.age}}<p>Edad: {{user.age}}</p>{{/if}}
+        <p>Rol: {{user.role}}</p>
+        
+        {{#if cart}}
+            <h3>Productos en el carrito</h3>
+            {{#if cart.products.length}}
+                <ul>
+                {{#each cart.products}}
+                    <li>{{this.productId.title}} - Cantidad: {{this.quantity}}</li>
+                {{/each}}
+                </ul>
+            {{else}}
+                <p>No hay productos en el carrito</p>
+            {{/if}}
+        {{else}}
+            <p>No se encontró un carrito para este usuario</p>
+        {{/if}}
+        
+        <form action="/api/auth/logout" method="GET">
+            <button type="submit" class="btn-logout">Cerrar Sesión</button>
+        </form>
+    {{else}}
+        <p>No se pudo cargar la información del usuario.</p>
+        <a href="/login" class="btn">Iniciar Sesión</a>
+    {{/if}}
+</div>

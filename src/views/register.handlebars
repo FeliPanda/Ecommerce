@@ -1,0 +1,72 @@
+<div class="coffee-register">
+  <div class="register-container">
+    <div class="register-header">
+      <svg class="coffee-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+        <line x1="6" y1="2" x2="6" y2="4"></line>
+        <line x1="10" y1="2" x2="10" y2="4"></line>
+        <line x1="14" y1="2" x2="14" y2="4"></line>
+      </svg>
+      <h1>Unete a la preparación</h1>
+      <p>Crea tu cuenta de fan del café</p>
+    </div>
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="first_name">Nombre</label>
+        <input type="text" id="first_name" name="first_name" required>
+      </div>
+      <div class="form-group">
+        <label for="last_name">Apellido</label>
+        <input type="text" id="last_name" name="last_name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="barista@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="age">Edad</label>
+        <input type="number" id="age" name="age" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirma tu contraseña</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+      </div>
+      <button type="submit">Registrarse</button>
+    </form>
+    <div class="form-footer">
+      <p>ya tienes una cuenta? <a href="/login">Ingresa aqui</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    try {
+        const response = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Object.fromEntries(formData))
+        });
+        const data = await response.json();
+        if (response.ok) {
+            alert(data.message);
+            // Redirigir al usuario a la página de login
+            window.location.href = data.redirectUrl + '?registered=true&email=' + encodeURIComponent(data.email);
+        } else {
+            throw new Error(data.message || 'Error en el registro');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert(error.message);
+    }
+});
+</script>

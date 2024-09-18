@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brew Access - Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/coffee-register.css">
+
+</head>
+<body>
+    <div class="coffee-login">
+        <div class="login-container">
+            {{#if registered}}
+            <div class="success-message">
+                ¡Registro exitoso! Por favor, inicia sesión con tus nuevas credenciales.
+            </div>
+            {{/if}}
+            {{#if error}}
+            <div class="error-message">
+                {{error}}
+            </div>
+            {{/if}}
+            <div class="login-header">
+                <svg class="coffee-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+                    <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+                    <line x1="6" y1="2" x2="6" y2="4"></line>
+                    <line x1="10" y1="2" x2="10" y2="4"></line>
+                    <line x1="14" y1="2" x2="14" y2="4"></line>
+                </svg>
+                <h1>Brew Access</h1>
+                <p>Login to your coffee account</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="{{email}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn-submit">Brew In</button>
+            </form>
+            <div class="form-footer">
+                <a href="#">Forgot your password?</a>
+                <p>Don't have an account? <a href="/register">Register here</a></p>
+            </div>
+        </div>
+    </div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    console.log('Formulario enviado'); // Añade esta línea
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const formObject = Object.fromEntries(formData);
+    console.log('Datos del formulario:', formObject);
+
+    try {
+        const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formObject)
+        });
+        
+        console.log('Respuesta recibida:', response); // Añade esta línea
+        
+        const data = await response.json();
+        console.log('Datos de respuesta:', data); // Añade esta línea
+        
+        if (!response.ok) {
+            throw new Error(data.message || 'Error en el login');
+        }
+        
+        console.log('Login exitoso:', data);
+        window.location.href = '/profile';
+    } catch (error) {
+        console.error('Error:', error);
+        alert(error.message);
+    }
+});
+</script>
+</body>
+</html>
