@@ -5,7 +5,8 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": " node --env-file .env --watch src/app.js"
+    "start": " node --env-file .env --watch src/app.js",
+    "dev": "nodemon --env-file .env src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +20,8 @@
     "mongoose": "^8.5.2",
     "socket.io": "^4.7.5",
     "url": "^0.11.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
